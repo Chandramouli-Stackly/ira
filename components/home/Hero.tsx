@@ -15,9 +15,9 @@ export function Hero() {
       <div className="absolute top-20 left-10 -z-10 w-80 h-80 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
 
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Headlines & Actions */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          <div className="lg:col-span-6 space-y-6 text-left">
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-2">
               <Badge variant="teal" size="md">
@@ -27,7 +27,7 @@ export function Hero() {
             </div>
 
             {/* Master Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-brand-navy leading-[1.15]">
+            <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-bold tracking-tight text-brand-navy leading-[1.15]">
               Transform Your Business with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-navy via-brand-teal to-teal-500">
                 Smart, Scalable Technology.
@@ -71,11 +71,11 @@ export function Hero() {
           </div>
 
           {/* Right Column: Visual Showcase */}
-          <div className="lg:col-span-5 relative">
+          <div className="lg:col-span-6 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Graphic Card Container */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/90 bg-brand-navy">
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full">
+                <div className="relative aspect-[16/10] w-full">
                   <Image
                     src="/images/hero/1.jpg"
                     alt="Innovating Today, Transforming Tomorrow - IraSoft Technologies"

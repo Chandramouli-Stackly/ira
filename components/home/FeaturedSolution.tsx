@@ -60,12 +60,12 @@ export function FeaturedSolution() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-teal/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10 mb-12">
-            <div className="lg:col-span-7 space-y-4">
+            <div className="lg:col-span-6 space-y-4">
               <Badge variant="teal" className="bg-brand-teal/20 text-teal-300 border-teal-500/40">
                 Flagship Hospitality Solution
               </Badge>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+              <h2 className="text-3xl sm:text-4xl xl:text-5xl font-bold tracking-tight text-white leading-tight">
                 Complete Hotel & Resort Management Solutions
               </h2>
 
@@ -74,7 +74,7 @@ export function FeaturedSolution() {
               </p>
             </div>
 
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-6">
               {/* Actual Live Screenshot Mockup */}
               <div className="relative rounded-xl overflow-hidden border border-white/20 shadow-2xl bg-black/40">
                 <div className="relative aspect-[16/10] w-full">

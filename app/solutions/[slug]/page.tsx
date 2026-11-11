@@ -86,18 +86,42 @@ export async function generateMetadata({ params }: SolutionPageProps) {
   });
 }
 
-const SOLUTION_SCREENSHOTS: Record<string, { src: string; caption: string }> = {
+const SOLUTION_SCREENSHOTS: Record<
+  string,
+  {
+    src: string;
+    caption: string;
+    aspectClass?: string;
+    textColSpan?: string;
+    imageColSpan?: string;
+    fitClass?: string;
+    objectPosition?: string;
+  }
+> = {
   "hotel-management-system": {
     src: "/images/projects/hotel-calendar-matrix.jpg",
     caption: "Live 30-Day Room Availability Grid & Reservation Status Matrix (Mouli Hotels & Resorts PMS)",
+    aspectClass: "aspect-[16/10]",
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
+    objectPosition: "object-top",
   },
   "enterprise-erp": {
     src: "/images/projects/odoo-erp-app-suite.jpg",
     caption: "Connected 25+ App Enterprise Odoo ERP Suite with Invoicing, CRM, and Multi-Warehouse Inventory",
+    aspectClass: "aspect-[16/10]",
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
+    objectPosition: "object-top",
   },
   "ai-workflow-automation": {
     src: "/images/projects/hotel-executive-flash-report.jpg",
     caption: "Automated Executive Flash Reporting with Dynamic Revenue & Occupancy Analytics",
+    aspectClass: "aspect-[4/3]",
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
+    fitClass: "object-contain",
+    objectPosition: "object-center",
   },
 };
 
@@ -123,10 +147,10 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
       <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7">
+            <div className={screenshot ? (screenshot.textColSpan || "lg:col-span-6") : "lg:col-span-12 max-w-3xl"}>
               <Badge variant="teal">{solution.badge}</Badge>
 
-              <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
+              <h1 className="mt-4 text-3xl sm:text-4xl xl:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
                 {solution.heroHeadline}
               </h1>
 
@@ -151,15 +175,15 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
             </div>
 
             {screenshot && (
-              <div className="lg:col-span-5">
+              <div className={screenshot.imageColSpan || "lg:col-span-6"}>
                 <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900">
-                  <div className="relative aspect-[16/10] w-full bg-slate-950">
+                  <div className={`relative ${screenshot.aspectClass || "aspect-[16/10]"} w-full bg-slate-950`}>
                     <Image
                       src={screenshot.src}
                       alt={solution.title}
                       fill
                       priority
-                      className="object-cover object-top"
+                      className={`${screenshot.fitClass || "object-cover"} ${screenshot.objectPosition || "object-top"}`}
                     />
                   </div>
                   <div className="p-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-800 flex items-center justify-between">

@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import { ImageLightbox } from "@/components/ui/ImageLightbox";
+import { ImageLightbox, type GalleryImage } from "@/components/ui/ImageLightbox";
 import { SERVICES, getServiceBySlug } from "@/data/services";
 import { constructMetadata } from "@/lib/seo/metadata";
 import { getServiceSchema } from "@/lib/seo/schema";
@@ -35,162 +35,271 @@ interface ServicePageProps {
 
 const SERVICE_SCREENSHOTS: Record<
   string,
-  { src: string; caption: string; objectPosition?: string }
+  {
+    src: string;
+    caption: string;
+    objectPosition?: string;
+    aspectClass?: string;   // controls height/shape per service
+    textColSpan?: string;   // left text width (out of 12)
+    imageColSpan?: string;  // right image width (out of 12)
+    fitClass?: string;      // object-cover or object-contain
+  }
 > = {
   "hotel-management": {
-    src: "/images/projects/hotel-calendar-matrix.jpg",
+    src: "/images/services/hotel&resort.png", // 955x955 (1:1 square)
     caption: "Live Room Availability Grid & Housekeeping Status (Mouli Hotels & Resorts)",
-    objectPosition: "object-top",
+    objectPosition: "object-center",
+    aspectClass: "aspect-square",
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
   },
   "odoo-erp": {
-    src: "/images/projects/odoo-erp-app-suite.jpg",
+    src: "/images/services/odoo_service.png", // 945x949 (1:1 square)
     caption: "Connected 25+ Odoo ERP Application Suite configured by IraSoft",
-    objectPosition: "object-top",
+    objectPosition: "object-center",
+    aspectClass: "aspect-square", // prevents cutting off bottom 5 icon cards
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
   },
   "custom-software": {
-    src: "/images/brand/custom_soft.png",
+    src: "/images/brand/custom_soft.png", // 1672x941 (16:9)
     caption: "Bespoke Business Application Architecture & Tailored Portal Systems",
     objectPosition: "object-center",
+    aspectClass: "aspect-video", // matches 16:9
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
   },
   "ai-automation": {
-    src: "/images/brand/ai.png",
+    src: "/images/brand/ai.png", // 1672x941 (16:9)
     caption: "AI Process Automation, Intelligent Document Processing & Cognitive Agents",
     objectPosition: "object-center",
+    aspectClass: "aspect-video",
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
   },
   "web-development": {
-    src: "/images/brand/web_development.jpg",
+    src: "/images/brand/web_development.jpg", // 1000x750 (4:3)
     caption: "Beachfront Luxury Resort Booking Portal (RB Resorts Chirala)",
-    objectPosition: "object-top",
+    objectPosition: "object-center",
+    aspectClass: "aspect-[4/3]",
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
   },
   "digital-marketing": {
-    src: "/images/brand/digital_marketing.jpg",
+    src: "/images/brand/digital_marketing.jpg", // 1536x1024 (3:2)
     caption: "Performance-Driven Meta Ads Strategy, Search Engine Optimization & Growth Analytics",
     objectPosition: "object-center",
+    aspectClass: "aspect-[3/2]",
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
   },
   "it-support": {
-    src: "/images/brand/It_support.png",
+    src: "/images/brand/It_support.png", // 1672x941 (16:9)
     caption: "Reliable Cloud Infrastructure, 24/7 Server Monitoring & Technical Advisory",
     objectPosition: "object-center",
+    aspectClass: "aspect-video",
+    textColSpan: "lg:col-span-6",
+    imageColSpan: "lg:col-span-6",
   },
 };
 
-const SERVICE_GALLERIES: Record<string, { src: string; caption: string }[]> = {
+const SERVICE_GALLERIES: Record<string, GalleryImage[]> = {
   "hotel-management": [
     {
       src: "/images/projects/hotel-calendar-matrix.jpg",
       caption: "Interactive 30-Day Room Availability Calendar & Cleaning Status Grid",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-top",
     },
     {
       src: "/images/projects/hotel-reservations-kanban.jpg",
       caption: "Real-Time Reservation Pipeline & Booking Channel Management",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-top",
     },
     {
       src: "/images/projects/hotel-executive-flash-report.jpg",
       caption: "Executive Daily Flash Report: Occupancy, ADR, RevPAR & Net Revenue",
+      aspectClass: "aspect-[4/3]",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
     {
       src: "/images/projects/hotel-police-compliance-kanban.png",
       caption: "Guest Verification Registry & Police Station Compliance Board",
+      aspectClass: "aspect-[4/3]",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
     {
       src: "/images/projects/hotel-frontdesk-menu.png",
       caption: "Front Desk Rapid Dispatch: Arrivals, In-House Guests, & Shift Cashiering",
+      aspectClass: "aspect-[4/3]",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
     {
       src: "/images/projects/hotel-housekeeping-menu.png",
       caption: "Housekeeping Operations & Morning Room Turnover Sheet",
+      aspectClass: "aspect-[4/3]",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
   ],
   "odoo-erp": [
     {
       src: "/images/projects/odoo-erp-app-suite.jpg",
       caption: "Unified 25+ Odoo ERP Enterprise Business Modules Suite",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-top",
     },
     {
       src: "/images/projects/odoo-payroll-employee-slips.jpg",
       caption: "Multi-Department Employee Payroll Batches & Salary Computation",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-top",
     },
     {
       src: "/images/projects/odoo-salary-computation-slip.jpg",
       caption: "Automated Salary Rule Calculation Engine & Tax Deduction Breakdowns",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-top",
     },
     {
       src: "/images/projects/odoo-payslip-batches.png",
       caption: "Batch Payslip Generation, Verification & PDF Slip Distribution",
+      aspectClass: "aspect-[16/10]",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
   ],
   "custom-software": [
     {
-      src: "/images/brand/social-launch-laptop.jpg",
+      src: "/images/services/cs1.jpg",
       caption: "Bespoke Business Application Architecture & Tailored Portal Systems",
+      aspectClass: "aspect-video",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
     {
-      src: "/images/projects/hotel-police-compliance-kanban.png",
+      src: "/images/services/cs2.jpg",
       caption: "Custom Web Application: Law Enforcement Regulatory Registry & Verification",
+      aspectClass: "aspect-video",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
     {
-      src: "/images/projects/odoo-salary-computation-slip.jpg",
+      src: "/images/services/cs3.jpg",
       caption: "Custom Rule Engine: Dynamic Multi-Parameter Calculations & Invoicing Logic",
+      aspectClass: "aspect-video",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
     {
-      src: "/images/projects/odoo-payslip-batches.png",
+      src: "/images/services/cs4.jpg",
       caption: "Workflow Automation: Automated Status Transitions & Batch Processing",
+      aspectClass: "aspect-video",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
   ],
   "ai-automation": [
     {
-      src: "/images/brand/social-launch-globe.jpg",
+      src: "/images/services/IA.jpg",
       caption: "Intelligent AI Process Automation, Cognitive Agents & Knowledge Retrieval",
+      aspectClass: "aspect-[19/10]",
+      objectPosition: "object-center",
     },
     {
-      src: "/images/hero/hero-banner-innovating.jpg",
-      caption: "AI Neural Processing, Smart Document Pipelines & Cloud Architecture",
-    },
-    {
-      src: "/images/brand/social-launch-laptop.jpg",
+      src: "/images/services/IA2.jpg",
       caption: "Enterprise AI Integration: Natural Language Interfaces for Business Teams",
+      aspectClass: "aspect-[19/10]",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/images/services/IA3.jpg",
+      caption: "AI Neural Processing, Smart Document Pipelines & Cloud Architecture",
+      aspectClass: "aspect-[19/10]",
+      objectPosition: "object-center",
     },
   ],
   "web-development": [
     {
-      src: "/images/projects/resort-booking-portal.jpg",
+      src: "/images/services/hb1.webp",
       caption: "Luxury Beachfront Resort Booking Portal & Direct Reservation Engine",
+      aspectClass: "aspect-video",
+      objectPosition: "object-top",
     },
     {
-      src: "/images/projects/hotel-calendar-matrix.jpg",
+      src: "/images/services/hb2.webp",
       caption: "High-Performance Next.js Frontend Synchronized with Live Backend Availability",
+      aspectClass: "aspect-video",
+      fitClass: "object-contain",
+      objectPosition: "object-center",
     },
     {
-      src: "/images/brand/social-launch-laptop.jpg",
+      src: "/images/services/hb3.png",
       caption: "Responsive Corporate Digital Platforms Built for Sub-Second Speed & Conversions",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/images/services/hb4.png",
+      caption: "Connected Multi-Device Web Experiences & SEO-First Publishing Architecture",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
     },
   ],
   "digital-marketing": [
     {
-      src: "/images/hero/hero-banner-innovating.jpg",
+      src: "/images/services/dm1.jpg",
       caption: "Performance-Driven Meta Ads Strategy & Data-Driven Growth Marketing",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
     },
     {
-      src: "/images/hero/hero-banner-skyline.jpg",
+      src: "/images/services/dm2.jpg",
       caption: "Modern Digital Visibility, B2B Audience Targeting & Lead Generation",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
     },
     {
-      src: "/images/brand/social-launch-globe.jpg",
+      src: "/images/services/dm3.jpg",
       caption: "Integrated Digital Campaigns Across Web, Meta, and Organic Search",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/images/services/dm4.jpg",
+      caption: "Conversion-Focused Brand Storytelling & Landing Page Optimization",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
     },
   ],
   "it-support": [
     {
-      src: "/images/hero/hero-banner-mountain.jpg",
+      src: "/images/services/its1.png",
       caption: "Reliable Cloud Infrastructure, IT Consulting & 24/7 Monitoring",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
     },
     {
-      src: "/images/brand/social-launch-laptop.jpg",
-      caption: "Comprehensive Technical Consulting & Secure Application Maintenance",
-    },
-    {
-      src: "/images/hero/hero-banner-innovating.jpg",
+      src: "/images/services/its2.webp",
       caption: "Scalable Cloud Hosting, Server Patching & Disaster Recovery Protocols",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/images/services/its3.webp",
+      caption: "Comprehensive Technical Consulting & Secure Application Maintenance",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/images/services/its4.jpg",
+      caption: "Proactive Performance Tuning, Security Audits & Uptime Management",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
     },
   ],
 };
@@ -356,12 +465,12 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className={serviceScreenshot ? "lg:col-span-7" : "lg:col-span-12 max-w-3xl"}>
+            <div className={serviceScreenshot ? (serviceScreenshot.textColSpan || "lg:col-span-6") : "lg:col-span-12 max-w-3xl"}>
               <div className="inline-flex items-center gap-2 mb-4">
                 <Badge variant="teal">{service.badge}</Badge>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
+              <h1 className="text-3xl sm:text-4xl xl:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
                 {service.heroHeadline}
               </h1>
 
@@ -391,15 +500,15 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
 
             {serviceScreenshot && (
-              <div className="lg:col-span-5">
+              <div className={serviceScreenshot.imageColSpan || "lg:col-span-6"}>
                 <div className="rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-900 group">
-                  <div className="relative aspect-[16/10] w-full bg-slate-950 overflow-hidden">
+                  <div className={`relative ${serviceScreenshot.aspectClass || "aspect-[16/10]"} w-full bg-slate-950 overflow-hidden`}>
                     <Image
                       src={serviceScreenshot.src}
                       alt={service.title}
                       fill
                       priority
-                      className={`object-cover ${serviceScreenshot.objectPosition || "object-center"} group-hover:scale-[1.02] transition-transform duration-300`}
+                      className={`${serviceScreenshot.fitClass || "object-cover"} ${serviceScreenshot.objectPosition || "object-center"} group-hover:scale-[1.02] transition-transform duration-300`}
                     />
                   </div>
                   <div className="p-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-800 flex items-center justify-between">

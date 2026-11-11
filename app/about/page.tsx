@@ -60,11 +60,11 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div className="lg:col-span-6 space-y-6">
               <Badge variant="teal">About IraSoft Technologies</Badge>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
+              <h1 className="text-3xl sm:text-4xl xl:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
                 Building Technology That Moves Businesses Forward
               </h1>
 
@@ -92,9 +92,9 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-6">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
-                <div className="relative aspect-[12/7] w-full">
+                <div className="relative aspect-video w-full">
                   <Image
                     src="/images/brand/about1.png"
                     alt="Dream. Innovate. Grow. - IraSoft Technologies"

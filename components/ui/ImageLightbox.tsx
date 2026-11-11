@@ -4,9 +4,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
-interface GalleryImage {
+export interface GalleryImage {
   src: string;
   caption: string;
+  aspectClass?: string;
+  spanClass?: string;
+  fitClass?: string;
+  objectPosition?: string;
 }
 
 interface ImageLightboxProps {
@@ -58,14 +62,18 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
           <div
             key={idx}
             onClick={() => openLightbox(idx)}
-            className="group relative cursor-pointer rounded-xl overflow-hidden border border-slate-200/90 shadow-subtle hover:shadow-card hover:border-brand-teal transition-all bg-white"
+            className={`group relative cursor-pointer rounded-xl overflow-hidden border border-slate-200/90 shadow-subtle hover:shadow-card hover:border-brand-teal transition-all bg-white ${item.spanClass || ""}`}
           >
-            <div className="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+            <div
+              className={`relative ${item.aspectClass || "aspect-[16/10]"} w-full ${
+                item.fitClass === "object-contain" ? "bg-slate-50" : "bg-slate-900"
+              } overflow-hidden`}
+            >
               <Image
                 src={item.src}
                 alt={item.caption}
                 fill
-                className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-300"
+                className={`${item.fitClass || "object-cover"} ${item.objectPosition || "object-top"} group-hover:scale-[1.03] transition-transform duration-300`}
               />
               <div className="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/75 backdrop-blur-sm text-white text-xs font-semibold rounded-lg shadow-lg">
