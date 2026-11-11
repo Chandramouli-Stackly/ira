@@ -13,40 +13,42 @@ import {
   BarChart3,
   Users2,
   PackageSearch,
-  ArrowRight
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
 
 export function FeaturedSolution() {
   const highlights = [
     {
       title: "Front Desk & Availability Matrix",
-      desc: "Visual room calendar with live status updates for walk-ins and bookings.",
+      desc: "Visual 30-day room calendar with live status updates (Vacant, Occupied, Reserved, Due Out, Dirty).",
       icon: CalendarDays,
     },
     {
       title: "Fast Guest Check-In & Folios",
-      desc: "Express check-in with digital ID attachments and unified billing folios.",
+      desc: "Express check-in, digital guest ID attachments, and unified multi-charge guest billing folios.",
       icon: UserCheck,
     },
     {
       title: "Housekeeping & Room Turnover",
-      desc: "Mobile room readiness board alerting reception immediately when cleaned.",
+      desc: "Morning room status sheets alerting reception immediately when rooms are clean and inspected.",
       icon: Sparkles,
     },
     {
-      title: "Store & Inventory Controls",
-      desc: "Track linen, toiletries, and minibar consumables with auto-reorder alerts.",
-      icon: PackageSearch,
-    },
-    {
-      title: "Staff & Role-Based Workflows",
-      desc: "Secure permissions for Managers, Receptionists, Housekeeping & Accounts.",
-      icon: Users2,
-    },
-    {
-      title: "Revenue Reports & Daily Audits",
-      desc: "Automated ADR, RevPAR, occupancy rate, and cashier shift reconciliation.",
+      title: "Executive Daily Flash Reports",
+      desc: "Live morning operational briefing across Occupancy %, ADR (₹2,750), RevPAR, and multi-outlet revenue.",
       icon: BarChart3,
+    },
+    {
+      title: "Statutory Police & Form C Compliance",
+      desc: "Paperless guest police intimations, foreign national Form C registers, and FIR case tracker.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Role-Based Staff Workflows",
+      desc: "Dedicated interfaces for General Managers, Front Desk, Housekeeping, Storekeepers & Accounts.",
+      icon: Users2,
     },
   ];
 
@@ -57,25 +59,45 @@ export function FeaturedSolution() {
           {/* Subtle Background Glow */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-teal/20 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl">
-            <Badge variant="teal" className="bg-brand-teal/20 text-teal-300 border-teal-500/40">
-              Featured Solution
-            </Badge>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10 mb-12">
+            <div className="lg:col-span-7 space-y-4">
+              <Badge variant="teal" className="bg-brand-teal/20 text-teal-300 border-teal-500/40">
+                Flagship Hospitality Solution
+              </Badge>
 
-            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-              Complete Hotel & Resort Management Solutions
-            </h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+                Complete Hotel & Resort Management Solutions
+              </h2>
 
-            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Manage your hospitality business with connected technology. IraSoft helps
-              hotels and resorts streamline reservations, guest services, room
-              operations, inventory, employees, billing, and business reporting through
-              customized management solutions.
-            </p>
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+                Engineered and actively deployed for luxury properties (such as <strong>Mouli Hotels & Resorts</strong> and <strong>RB Resorts</strong>). Manage reservations, front desk operations, room turnover, inventory, employees, billing, and business reporting through connected technology.
+              </p>
+            </div>
+
+            <div className="lg:col-span-5">
+              {/* Actual Live Screenshot Mockup */}
+              <div className="relative rounded-xl overflow-hidden border border-white/20 shadow-2xl bg-black/40">
+                <div className="relative aspect-[16/10] w-full">
+                  <Image
+                    src="/images/projects/hotel-calendar-matrix.jpg"
+                    alt="Mouli Hotels & Resorts Management Suite by IraSoft Technologies"
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="p-3 bg-black/70 backdrop-blur-sm text-[11px] text-teal-300 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 font-semibold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    Live Mouli Hotels & Resorts Suite
+                  </span>
+                  <span className="text-slate-400">Deployed by IraSoft</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Grid of Highlighted Capabilities */}
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
             {highlights.map((item) => {
               const Icon = item.icon;
               return (
@@ -98,7 +120,7 @@ export function FeaturedSolution() {
           {/* Bottom Action Area */}
           <div className="mt-12 pt-8 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
             <p className="text-xs text-slate-400 max-w-lg">
-              Configurable modules designed to fit your property size and operational workflows.
+              Configurable modules designed to fit independent hotels, beachfront resorts, and boutique luxury properties.
             </p>
 
             <Button

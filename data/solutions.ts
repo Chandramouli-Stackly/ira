@@ -235,3 +235,4 @@ export const SOLUTIONS: SolutionItem[] = [
 export function getSolutionBySlug(slug: string): SolutionItem | undefined {
   return SOLUTIONS.find((item) => item.slug === slug);
 }
+

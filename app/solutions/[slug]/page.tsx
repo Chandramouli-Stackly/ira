@@ -1,5 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -40,12 +41,29 @@ export async function generateMetadata({ params }: SolutionPageProps) {
   });
 }
 
+const SOLUTION_SCREENSHOTS: Record<string, { src: string; caption: string }> = {
+  "hotel-management-system": {
+    src: "/images/projects/hotel-calendar-matrix.jpg",
+    caption: "Live 30-Day Room Availability Grid & Reservation Status Matrix (Mouli Hotels & Resorts PMS)",
+  },
+  "enterprise-erp": {
+    src: "/images/projects/odoo-erp-app-suite.jpg",
+    caption: "Connected 25+ App Enterprise Odoo ERP Suite with Invoicing, CRM, and Multi-Warehouse Inventory",
+  },
+  "ai-workflow-automation": {
+    src: "/images/projects/hotel-executive-flash-report.jpg",
+    caption: "Automated Executive Flash Reporting with Dynamic Revenue & Occupancy Analytics",
+  },
+};
+
 export default function SolutionDetailPage({ params }: SolutionPageProps) {
   const solution = getSolutionBySlug(params.slug);
 
   if (!solution) {
     notFound();
   }
+
+  const screenshot = SOLUTION_SCREENSHOTS[solution.id];
 
   return (
     <>
@@ -59,31 +77,52 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
       {/* Hero */}
       <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
         <Container>
-          <div className="max-w-3xl">
-            <Badge variant="teal">{solution.badge}</Badge>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7">
+              <Badge variant="teal">{solution.badge}</Badge>
 
-            <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
-              {solution.heroHeadline}
-            </h1>
+              <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
+                {solution.heroHeadline}
+              </h1>
 
-            <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed">
-              {solution.heroSubheadline}
-            </p>
+              <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed">
+                {solution.heroSubheadline}
+              </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button
-                href={`/contact?service=${encodeURIComponent(solution.title)}`}
-                variant="teal"
-                size="lg"
-                className="group"
-              >
-                <span>Request Solution Consultation</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button href="#roles" variant="outline" size="lg">
-                <span>View User Roles & Modules</span>
-              </Button>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Button
+                  href={`/contact?service=${encodeURIComponent(solution.title)}`}
+                  variant="teal"
+                  size="lg"
+                  className="group"
+                >
+                  <span>Request Solution Consultation</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button href="#roles" variant="outline" size="lg">
+                  <span>View User Roles & Modules</span>
+                </Button>
+              </div>
             </div>
+
+            {screenshot && (
+              <div className="lg:col-span-5">
+                <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900">
+                  <div className="relative aspect-[16/10] w-full bg-slate-950">
+                    <Image
+                      src={screenshot.src}
+                      alt={solution.title}
+                      fill
+                      priority
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  <div className="p-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-800 flex items-center justify-between">
+                    <span className="font-semibold">{screenshot.caption}</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </Container>
       </section>
@@ -215,3 +254,4 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
     </>
   );
 }
+

@@ -318,3 +318,4 @@ export const ARTICLES: InsightArticle[] = [
 export function getArticleBySlug(slug: string): InsightArticle | undefined {
   return ARTICLES.find((a) => a.slug === slug);
 }
+

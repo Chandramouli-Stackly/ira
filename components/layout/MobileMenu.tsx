@@ -168,3 +168,4 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     </div>
   );
 }
+

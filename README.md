@@ -164,3 +164,4 @@ npm start
 2. **Social Media URLs:** Update the official LinkedIn and Instagram links in `data/company.ts` once official corporate handles are active.
 3. **Approved Client Testimonials:** As verified client reviews and case studies are approved, add them to `APPROVED_TESTIMONIALS` in `data/testimonials.ts`.
 4. **Analytics IDs:** Add your Google Analytics 4 Measurement ID (`G-XXXXXXXXXX`) into `.env.local` when ready.
+

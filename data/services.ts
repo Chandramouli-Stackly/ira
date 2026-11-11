@@ -777,3 +777,4 @@ export const SERVICES: ServiceItem[] = [
 export function getServiceBySlug(slug: string): ServiceItem | undefined {
   return SERVICES.find((service) => service.slug === slug);
 }
+

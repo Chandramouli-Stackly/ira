@@ -79,3 +79,4 @@ export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
     })),
   };
 }
+

@@ -1,5 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -30,6 +31,21 @@ interface ServicePageProps {
     slug: string;
   };
 }
+
+const SERVICE_SCREENSHOTS: Record<string, { src: string; caption: string }> = {
+  "hotel-management": {
+    src: "/images/projects/hotel-calendar-matrix.jpg",
+    caption: "Live Room Availability Grid & Housekeeping Status (Mouli Hotels & Resorts)",
+  },
+  "odoo-erp": {
+    src: "/images/projects/odoo-erp-app-suite.jpg",
+    caption: "Connected 25+ Odoo ERP Application Suite configured by IraSoft",
+  },
+  "web-development": {
+    src: "/images/projects/resort-booking-portal.jpg",
+    caption: "Beachfront Luxury Resort Booking Portal (RB Resorts Chirala)",
+  },
+};
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Boxes,
@@ -76,6 +92,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
   }
 
   const IconComponent = ICON_MAP[service.iconName] || Code2;
+  const serviceScreenshot = SERVICE_SCREENSHOTS[service.slug];
   const serviceSchema = getServiceSchema({
     name: service.title,
     description: service.shortDescription,
@@ -100,38 +117,59 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       {/* Hero Header */}
       <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
         <Container>
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <Badge variant="teal">{service.badge}</Badge>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className={serviceScreenshot ? "lg:col-span-7" : "max-w-3xl"}>
+              <div className="inline-flex items-center gap-2 mb-4">
+                <Badge variant="teal">{service.badge}</Badge>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
+                {service.heroHeadline}
+              </h1>
+
+              <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed">
+                {service.heroSubheadline}
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Button
+                  href={`/contact?service=${encodeURIComponent(service.title)}`}
+                  variant="teal"
+                  size="lg"
+                  className="group"
+                >
+                  <span>{service.ctaText}</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+
+                <Button
+                  href="#capabilities"
+                  variant="outline"
+                  size="lg"
+                >
+                  <span>Explore Capabilities</span>
+                </Button>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy leading-tight">
-              {service.heroHeadline}
-            </h1>
-
-            <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed">
-              {service.heroSubheadline}
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button
-                href={`/contact?service=${encodeURIComponent(service.title)}`}
-                variant="teal"
-                size="lg"
-                className="group"
-              >
-                <span>{service.ctaText}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-
-              <Button
-                href="#capabilities"
-                variant="outline"
-                size="lg"
-              >
-                <span>Explore Capabilities</span>
-              </Button>
-            </div>
+            {serviceScreenshot && (
+              <div className="lg:col-span-5">
+                <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900">
+                  <div className="relative aspect-[16/10] w-full bg-slate-950">
+                    <Image
+                      src={serviceScreenshot.src}
+                      alt={service.title}
+                      fill
+                      priority
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  <div className="p-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-800">
+                    <span className="font-semibold">{serviceScreenshot.caption}</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </Container>
       </section>
@@ -335,3 +373,4 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
     </>
   );
 }
+

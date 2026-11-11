@@ -124,3 +124,4 @@ export const FOOTER_LINKS = {
     { name: "Cookie Policy", href: "/cookie-policy" }
   ]
 };
+

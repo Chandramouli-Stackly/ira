@@ -19,3 +19,4 @@ export function Card({ className, hover = true, children, ...props }: CardProps)
     </div>
   );
 }
+

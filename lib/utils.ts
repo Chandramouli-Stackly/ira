@@ -8,3 +8,4 @@ export function cn(...inputs: ClassValue[]) {
 export function formatPhoneNumber(phone: string) {
   return phone.replace(/\s+/g, "");
 }
+

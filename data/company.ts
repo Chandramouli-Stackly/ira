@@ -59,3 +59,4 @@ export const COMPANY: CompanyInfo = {
     amber: "#F59E0B",
   },
 };
+
