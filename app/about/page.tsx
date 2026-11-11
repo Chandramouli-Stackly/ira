@@ -94,9 +94,9 @@ export default function AboutPage() {
 
             <div className="lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
-                <div className="relative aspect-[4/3] w-full">
+                <div className="relative aspect-[12/7] w-full">
                   <Image
-                    src="/images/brand/social-launch-globe.jpg"
+                    src="/images/brand/about1.png"
                     alt="Dream. Innovate. Grow. - IraSoft Technologies"
                     fill
                     className="object-cover"

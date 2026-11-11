@@ -48,27 +48,27 @@ const SERVICE_SCREENSHOTS: Record<
     objectPosition: "object-top",
   },
   "custom-software": {
-    src: "/images/brand/social-launch-laptop.jpg",
+    src: "/images/brand/custom_soft.png",
     caption: "Bespoke Business Application Architecture & Tailored Portal Systems",
     objectPosition: "object-center",
   },
   "ai-automation": {
-    src: "/images/brand/social-launch-globe.jpg",
+    src: "/images/brand/ai.png",
     caption: "AI Process Automation, Intelligent Document Processing & Cognitive Agents",
     objectPosition: "object-center",
   },
   "web-development": {
-    src: "/images/projects/resort-booking-portal.jpg",
+    src: "/images/brand/web_development.jpg",
     caption: "Beachfront Luxury Resort Booking Portal (RB Resorts Chirala)",
     objectPosition: "object-top",
   },
   "digital-marketing": {
-    src: "/images/hero/hero-banner-innovating.jpg",
+    src: "/images/brand/digital_marketing.jpg",
     caption: "Performance-Driven Meta Ads Strategy, Search Engine Optimization & Growth Analytics",
     objectPosition: "object-center",
   },
   "it-support": {
-    src: "/images/hero/hero-banner-mountain.jpg",
+    src: "/images/brand/It_support.png",
     caption: "Reliable Cloud Infrastructure, 24/7 Server Monitoring & Technical Advisory",
     objectPosition: "object-center",
   },
