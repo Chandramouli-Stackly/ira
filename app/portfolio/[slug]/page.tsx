@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 import { PROJECTS, getProjectBySlug } from "@/data/portfolio";
 import { constructMetadata } from "@/lib/seo/metadata";
 import {
@@ -139,39 +140,24 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
                 </p>
               </div>
 
-              {/* Full Gallery of Real Screenshots */}
-              {project.galleryImages && project.galleryImages.length > 1 && (
+              {/* Interactive Gallery of Real Screenshots with Fullscreen Lightbox */}
+              {project.galleryImages && project.galleryImages.length > 0 && (
                 <div className="space-y-6 pt-4">
-                  <div className="border-b border-slate-200 pb-3">
-                    <h2 className="text-2xl font-bold text-brand-navy">
-                      System Screenshots & Module Walkthrough
-                    </h2>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Direct captures from the deployed software environment.
-                    </p>
+                  <div className="border-b border-slate-200 pb-3 flex items-center justify-between">
+                    <div>
+                      <h2 className="text-2xl font-bold text-brand-navy">
+                        System Screenshots & Module Walkthrough
+                      </h2>
+                      <p className="text-xs text-slate-500 mt-1">
+                        Click any screenshot below to open the interactive full-screen viewer.
+                      </p>
+                    </div>
+                    <span className="text-xs font-semibold text-brand-teal bg-teal-50 px-3 py-1.5 rounded-lg border border-teal-200/60 hidden sm:inline-block">
+                      {project.galleryImages.length} High-Res Screens
+                    </span>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-8">
-                    {project.galleryImages.slice(1).map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="rounded-xl overflow-hidden border border-slate-200 shadow-card bg-white"
-                      >
-                        <div className="relative aspect-[16/10] w-full bg-slate-100">
-                          <Image
-                            src={item.src}
-                            alt={item.caption}
-                            fill
-                            className="object-cover object-top hover:scale-[1.01] transition-transform duration-200"
-                          />
-                        </div>
-                        <div className="p-4 bg-slate-50 border-t border-slate-200 text-xs sm:text-sm text-slate-700 font-medium flex items-start gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-brand-teal flex-shrink-0 mt-0.5" />
-                          <span>{item.caption}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <ImageLightbox images={project.galleryImages} />
                 </div>
               )}
 

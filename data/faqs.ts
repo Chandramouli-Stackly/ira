@@ -66,7 +66,7 @@ export const FAQS: FaqItem[] = [
     id: "faq-9",
     question: "How can I request a project quotation?",
     answer:
-      "You can submit your project requirements through our online enquiry form on the Contact page, email us directly at enquiry@irasofttech.in, or reach our team via WhatsApp at +91 82470 303031. We review your requirements and provide a structured scope and proposal.",
+      "You can submit your project requirements through our online enquiry form on the Contact page, email us directly at enquiry@irasofttech.in, or reach our team via WhatsApp at +91 82470 30301. We review your requirements and provide a structured scope and proposal.",
     category: "pricing"
   },
   {
