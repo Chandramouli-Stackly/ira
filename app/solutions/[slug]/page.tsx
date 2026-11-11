@@ -34,9 +34,54 @@ export async function generateMetadata({ params }: SolutionPageProps) {
   const solution = getSolutionBySlug(params.slug);
   if (!solution) return {};
 
-  return constructMetadata({
+  const seoData: Record<string, { title: string; description: string; keywords: string[] }> = {
+    "hotel-management-system": {
+      title: "Hotel & Resort Management Solutions (Mouli PMS Suite) | IraSoft Technologies",
+      description:
+        "Complete hotel & resort management software suite with real-time room availability matrix, front desk check-in, housekeeping boards, and daily revenue reporting.",
+      keywords: [
+        "Hotel Management System",
+        "Resort Management Software",
+        "Hospitality PMS Software",
+        "Mouli Hotels Management Suite",
+        "Front Desk Hotel System",
+      ],
+    },
+    "enterprise-erp": {
+      title: "Connected Enterprise ERP Solutions & Payroll Suite | IraSoft Technologies",
+      description:
+        "Unify master data, multi-warehouse inventory, procurement, and automated employee payroll under a scalable enterprise ERP system.",
+      keywords: [
+        "Enterprise ERP System",
+        "Odoo ERP Solutions",
+        "Automated Employee Payroll Software",
+        "Multi-Warehouse Management ERP",
+        "Business ERP India",
+      ],
+    },
+    "ai-workflow-automation": {
+      title: "Intelligent AI Workflow Automation & Document Intelligence | IraSoft Technologies",
+      description:
+        "Eliminate manual operational bottlenecks with private business AI agents, automated document extraction, and workflow bots.",
+      keywords: [
+        "AI Workflow Automation",
+        "Intelligent Document Processing",
+        "Business AI Agents",
+        "Enterprise Automation Solutions",
+      ],
+    },
+  };
+
+  const currentSeo = seoData[solution.slug] || {
     title: `${solution.title} | ${COMPANY.name}`,
     description: solution.shortDescription,
+    keywords: [],
+  };
+
+  return constructMetadata({
+    title: currentSeo.title,
+    description: currentSeo.description,
+    keywords: currentSeo.keywords,
     path: `/solutions/${solution.slug}`,
   });
 }

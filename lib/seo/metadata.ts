@@ -19,32 +19,66 @@ export function constructMetadata({
   const url = `${COMPANY.websiteUrl}${path.startsWith("/") ? path : `/${path}`}`;
   const fullTitle = title.includes(COMPANY.name) ? title : `${title} | ${COMPANY.name}`;
 
-  const defaultKeywords = [
+  const brandKeywords = [
     "IraSoft Technologies",
-    "Software Development Company",
-    "Custom Software Development",
-    "Odoo ERP Development",
-    "Hotel Management Software",
-    "AI Automation Services",
-    "Website Development Company",
-    "Business Automation Solutions",
-    "IT Support & Technology Consulting"
+    "IraSoft Tech",
+    "Ira Soft Technologies",
+    "Ira Soft Tech",
+    "IraSoft",
+    "Ira Soft",
+    "irasofttech.in",
+    "irasofttech",
   ];
+
+  const serviceKeywords = [
+    "Odoo ERP Development Company",
+    "Odoo ERP Customization India",
+    "Odoo Implementation Partner",
+    "Custom Odoo Module Development",
+    "Hotel Management Software Company",
+    "Resort Management Software India",
+    "Hotel PMS Software Solutions",
+    "Hospitality Management System",
+    "Custom Software Development Company",
+    "Enterprise Software Solutions",
+    "AI Automation Services",
+    "Intelligent Document Processing",
+    "AI Business Automation",
+    "Website Development Company",
+    "Corporate Website Design",
+    "Next.js Development Company",
+    "Digital Marketing Services India",
+    "Meta Ads Management",
+    "IT Support & Technology Consulting",
+    "Software Company in Andhra Pradesh",
+    "Top Software Company India",
+  ];
+
+  const allKeywords = Array.from(new Set([...keywords, ...brandKeywords, ...serviceKeywords]));
 
   return {
     title: fullTitle,
     description,
-    keywords: Array.from(new Set([...keywords, ...defaultKeywords])),
+    keywords: allKeywords,
     metadataBase: new URL(COMPANY.websiteUrl),
     alternates: {
       canonical: url,
     },
-    authors: [{ name: COMPANY.name }],
+    applicationName: "IraSoft Technologies",
+    category: "technology",
+    authors: [{ name: "IraSoft Technologies", url: COMPANY.websiteUrl }],
+    creator: "IraSoft Technologies",
+    publisher: "IraSoft Technologies",
+    formatDetection: {
+      email: true,
+      address: true,
+      telephone: true,
+    },
     openGraph: {
       title: fullTitle,
       description,
       url,
-      siteName: COMPANY.name,
+      siteName: "IraSoft Technologies",
       images: [
         {
           url: ogImage,
@@ -61,6 +95,7 @@ export function constructMetadata({
       title: fullTitle,
       description,
       images: [ogImage],
+      creator: "@irasofttech",
     },
     robots: {
       index: true,
@@ -75,4 +110,3 @@ export function constructMetadata({
     },
   };
 }
-

@@ -75,9 +75,9 @@ export function Hero() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Graphic Card Container */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/90 bg-brand-navy">
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full">
+                <div className="relative aspect-[24/13] sm:aspect-[24/13] w-full">
                   <Image
-                    src="/images/hero/hero-banner-innovating.jpg"
+                    src="/images/hero/1.jpg"
                     alt="Innovating Today, Transforming Tomorrow - IraSoft Technologies"
                     fill
                     priority

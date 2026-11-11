@@ -67,19 +67,108 @@ export async function generateMetadata({ params }: ServicePageProps) {
   const service = getServiceBySlug(params.slug);
   if (!service) return {};
 
-  const titles: Record<string, string> = {
-    "odoo-erp": "Odoo ERP Development & Customization Services",
-    "hotel-management": "Hotel & Resort Management Software Solutions",
-    "custom-software": "Custom Software Development Services",
-    "ai-automation": "AI Automation & Intelligent Business Solutions",
-    "web-development": "Professional Website Development Services",
-    "digital-marketing": "Digital Marketing Services for Growing Businesses",
-    "it-support": "IT Support & Technology Consulting",
+  const seoData: Record<
+    string,
+    { title: string; description: string; keywords: string[] }
+  > = {
+    "odoo-erp": {
+      title: "Odoo ERP Development & Customization Company | IraSoft Technologies",
+      description:
+        "Expert Odoo ERP implementation, custom module development, accounting, multi-warehouse inventory, and workflow automation by IraSoft Technologies.",
+      keywords: [
+        "Odoo ERP Development Company",
+        "Odoo ERP Customization India",
+        "Odoo Implementation Partner",
+        "Custom Odoo Module Development",
+        "Odoo Warehouse and Inventory Management",
+        "Odoo ERP Consulting Services",
+      ],
+    },
+    "hotel-management": {
+      title: "Hotel & Resort Management Software Solutions (PMS) | IraSoft Technologies",
+      description:
+        "Comprehensive hotel and resort property management system (PMS) covering room availability calendar, front desk check-in, housekeeping boards, guest folios, and daily revenue flash reports.",
+      keywords: [
+        "Hotel Management Software Company",
+        "Resort Management Software India",
+        "Hotel PMS System Solutions",
+        "Front Desk Hotel Reservation Software",
+        "Housekeeping Room Turnover Software",
+        "Hotel Management Suite India",
+      ],
+    },
+    "custom-software": {
+      title: "Custom Software Development Company | IraSoft Technologies",
+      description:
+        "Bespoke business applications, web portals, workflow engines, and enterprise database software engineered for your unique business workflows.",
+      keywords: [
+        "Custom Software Development Company",
+        "Bespoke Software Development India",
+        "Enterprise Web Application Development",
+        "Business Portal Development",
+        "Custom Software Engineering Services",
+      ],
+    },
+    "ai-automation": {
+      title: "AI Automation & Intelligent Document Processing Solutions | IraSoft Technologies",
+      description:
+        "Transform business workflows with custom AI assistants, automated invoice extraction, private enterprise knowledge search (RAG), and autonomous task agents.",
+      keywords: [
+        "AI Automation Services India",
+        "Intelligent Document Processing",
+        "AI Invoice Extraction",
+        "Enterprise AI Solutions",
+        "AI Process Automation Company",
+      ],
+    },
+    "web-development": {
+      title: "Corporate Website Development Company | Next.js & React | IraSoft Technologies",
+      description:
+        "High-performance Jamstack corporate websites, e-commerce portals, and web applications engineered for sub-second speed, Google search ranking, and lead conversion.",
+      keywords: [
+        "Corporate Website Development Company",
+        "Next.js Development Company",
+        "Professional Website Design India",
+        "Custom Web Application Development",
+        "High Speed Corporate Websites",
+      ],
+    },
+    "digital-marketing": {
+      title: "Digital Marketing & Meta Ads Management Services | IraSoft Technologies",
+      description:
+        "Targeted Meta (Facebook & Instagram) ad campaigns, search engine optimization (SEO), brand storytelling, and high-converting lead generation funnels.",
+      keywords: [
+        "Digital Marketing Services India",
+        "Meta Ads Management",
+        "B2B Lead Generation Company",
+        "SEO Services for Businesses",
+        "Social Media Marketing Strategy",
+      ],
+    },
+    "it-support": {
+      title: "IT Support & Technology Consulting Services | IraSoft Technologies",
+      description:
+        "Dependable technical consulting, server maintenance, cloud deployments, software troubleshooting, and ongoing application support for growing businesses.",
+      keywords: [
+        "IT Support Company",
+        "Technology Consulting Services",
+        "Cloud Deployment Support",
+        "Software Maintenance Services",
+        "Server Troubleshooting Support",
+      ],
+    },
+  };
+
+  const currentSeo = seoData[service.slug] || {
+    title: `${service.title} | ${COMPANY.name}`,
+    description: service.shortDescription,
+    keywords: [],
   };
 
   return constructMetadata({
-    title: titles[service.slug] || `${service.title} | ${COMPANY.name}`,
-    description: service.shortDescription,
+    title: currentSeo.title,
+    description: currentSeo.description,
+    keywords: currentSeo.keywords,
     path: `/services/${service.slug}`,
   });
 }

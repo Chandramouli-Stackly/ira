@@ -7,12 +7,30 @@ import { COMPANY } from "@/data/company";
 import { constructMetadata } from "@/lib/seo/metadata";
 import { getOrganizationSchema, getWebsiteSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = constructMetadata({
-  title: `${COMPANY.name} | Custom Software, Odoo ERP & AI Solutions`,
-  description:
-    "IraSoft Technologies delivers custom software development, Odoo ERP customization, hotel management software, AI automation, website development, and digital solutions for growing businesses.",
-  path: "/",
-});
+export const metadata: Metadata = {
+  ...constructMetadata({
+    title: "IraSoft Technologies | Custom Software, Odoo ERP & Hotel Management Software",
+    description:
+      "IraSoft Technologies (IraSoft Tech) is a premier technology partner delivering custom software development, Odoo ERP customization, hotel & resort management systems (PMS), AI automation, and modern web platforms for growing businesses.",
+    path: "/",
+    keywords: [
+      "IraSoft Technologies",
+      "IraSoft Tech",
+      "Ira Soft Technologies",
+      "Ira Soft Tech",
+      "IraSoft",
+      "irasofttech.in",
+      "Odoo ERP Development Company",
+      "Hotel Management Software Company",
+      "Resort Management Software India",
+      "Custom Software Development India",
+      "AI Automation Services",
+    ],
+  }),
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "",
+  },
+};
 
 export const viewport: Viewport = {
   themeColor: "#142B4A",
@@ -32,14 +50,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/images/brand/irasoft-logo.jpg" />
-        <link rel="apple-touch-icon" href="/images/brand/irasoft-logo.jpg" />
-        {/* Organization JSON-LD Schema */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
+        <meta name="apple-mobile-web-app-title" content="IraSoft Technologies" />
+        {/* Google Site Name & Organization JSON-LD Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        {/* WebSite JSON-LD Schema */}
+        {/* WebSite JSON-LD Schema with SearchAction */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
@@ -54,4 +74,3 @@ export default function RootLayout({
     </html>
   );
 }
-
