@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 import { SERVICES, getServiceBySlug } from "@/data/services";
 import { constructMetadata } from "@/lib/seo/metadata";
 import { getServiceSchema } from "@/lib/seo/schema";
@@ -32,19 +33,166 @@ interface ServicePageProps {
   };
 }
 
-const SERVICE_SCREENSHOTS: Record<string, { src: string; caption: string }> = {
+const SERVICE_SCREENSHOTS: Record<
+  string,
+  { src: string; caption: string; objectPosition?: string }
+> = {
   "hotel-management": {
     src: "/images/projects/hotel-calendar-matrix.jpg",
     caption: "Live Room Availability Grid & Housekeeping Status (Mouli Hotels & Resorts)",
+    objectPosition: "object-top",
   },
   "odoo-erp": {
     src: "/images/projects/odoo-erp-app-suite.jpg",
     caption: "Connected 25+ Odoo ERP Application Suite configured by IraSoft",
+    objectPosition: "object-top",
+  },
+  "custom-software": {
+    src: "/images/brand/social-launch-laptop.jpg",
+    caption: "Bespoke Business Application Architecture & Tailored Portal Systems",
+    objectPosition: "object-center",
+  },
+  "ai-automation": {
+    src: "/images/brand/social-launch-globe.jpg",
+    caption: "AI Process Automation, Intelligent Document Processing & Cognitive Agents",
+    objectPosition: "object-center",
   },
   "web-development": {
     src: "/images/projects/resort-booking-portal.jpg",
     caption: "Beachfront Luxury Resort Booking Portal (RB Resorts Chirala)",
+    objectPosition: "object-top",
   },
+  "digital-marketing": {
+    src: "/images/hero/hero-banner-innovating.jpg",
+    caption: "Performance-Driven Meta Ads Strategy, Search Engine Optimization & Growth Analytics",
+    objectPosition: "object-center",
+  },
+  "it-support": {
+    src: "/images/hero/hero-banner-mountain.jpg",
+    caption: "Reliable Cloud Infrastructure, 24/7 Server Monitoring & Technical Advisory",
+    objectPosition: "object-center",
+  },
+};
+
+const SERVICE_GALLERIES: Record<string, { src: string; caption: string }[]> = {
+  "hotel-management": [
+    {
+      src: "/images/projects/hotel-calendar-matrix.jpg",
+      caption: "Interactive 30-Day Room Availability Calendar & Cleaning Status Grid",
+    },
+    {
+      src: "/images/projects/hotel-reservations-kanban.jpg",
+      caption: "Real-Time Reservation Pipeline & Booking Channel Management",
+    },
+    {
+      src: "/images/projects/hotel-executive-flash-report.jpg",
+      caption: "Executive Daily Flash Report: Occupancy, ADR, RevPAR & Net Revenue",
+    },
+    {
+      src: "/images/projects/hotel-police-compliance-kanban.png",
+      caption: "Guest Verification Registry & Police Station Compliance Board",
+    },
+    {
+      src: "/images/projects/hotel-frontdesk-menu.png",
+      caption: "Front Desk Rapid Dispatch: Arrivals, In-House Guests, & Shift Cashiering",
+    },
+    {
+      src: "/images/projects/hotel-housekeeping-menu.png",
+      caption: "Housekeeping Operations & Morning Room Turnover Sheet",
+    },
+  ],
+  "odoo-erp": [
+    {
+      src: "/images/projects/odoo-erp-app-suite.jpg",
+      caption: "Unified 25+ Odoo ERP Enterprise Business Modules Suite",
+    },
+    {
+      src: "/images/projects/odoo-payroll-employee-slips.jpg",
+      caption: "Multi-Department Employee Payroll Batches & Salary Computation",
+    },
+    {
+      src: "/images/projects/odoo-salary-computation-slip.jpg",
+      caption: "Automated Salary Rule Calculation Engine & Tax Deduction Breakdowns",
+    },
+    {
+      src: "/images/projects/odoo-payslip-batches.png",
+      caption: "Batch Payslip Generation, Verification & PDF Slip Distribution",
+    },
+  ],
+  "custom-software": [
+    {
+      src: "/images/brand/social-launch-laptop.jpg",
+      caption: "Bespoke Business Application Architecture & Tailored Portal Systems",
+    },
+    {
+      src: "/images/projects/hotel-police-compliance-kanban.png",
+      caption: "Custom Web Application: Law Enforcement Regulatory Registry & Verification",
+    },
+    {
+      src: "/images/projects/odoo-salary-computation-slip.jpg",
+      caption: "Custom Rule Engine: Dynamic Multi-Parameter Calculations & Invoicing Logic",
+    },
+    {
+      src: "/images/projects/odoo-payslip-batches.png",
+      caption: "Workflow Automation: Automated Status Transitions & Batch Processing",
+    },
+  ],
+  "ai-automation": [
+    {
+      src: "/images/brand/social-launch-globe.jpg",
+      caption: "Intelligent AI Process Automation, Cognitive Agents & Knowledge Retrieval",
+    },
+    {
+      src: "/images/hero/hero-banner-innovating.jpg",
+      caption: "AI Neural Processing, Smart Document Pipelines & Cloud Architecture",
+    },
+    {
+      src: "/images/brand/social-launch-laptop.jpg",
+      caption: "Enterprise AI Integration: Natural Language Interfaces for Business Teams",
+    },
+  ],
+  "web-development": [
+    {
+      src: "/images/projects/resort-booking-portal.jpg",
+      caption: "Luxury Beachfront Resort Booking Portal & Direct Reservation Engine",
+    },
+    {
+      src: "/images/projects/hotel-calendar-matrix.jpg",
+      caption: "High-Performance Next.js Frontend Synchronized with Live Backend Availability",
+    },
+    {
+      src: "/images/brand/social-launch-laptop.jpg",
+      caption: "Responsive Corporate Digital Platforms Built for Sub-Second Speed & Conversions",
+    },
+  ],
+  "digital-marketing": [
+    {
+      src: "/images/hero/hero-banner-innovating.jpg",
+      caption: "Performance-Driven Meta Ads Strategy & Data-Driven Growth Marketing",
+    },
+    {
+      src: "/images/hero/hero-banner-skyline.jpg",
+      caption: "Modern Digital Visibility, B2B Audience Targeting & Lead Generation",
+    },
+    {
+      src: "/images/brand/social-launch-globe.jpg",
+      caption: "Integrated Digital Campaigns Across Web, Meta, and Organic Search",
+    },
+  ],
+  "it-support": [
+    {
+      src: "/images/hero/hero-banner-mountain.jpg",
+      caption: "Reliable Cloud Infrastructure, IT Consulting & 24/7 Monitoring",
+    },
+    {
+      src: "/images/brand/social-launch-laptop.jpg",
+      caption: "Comprehensive Technical Consulting & Secure Application Maintenance",
+    },
+    {
+      src: "/images/hero/hero-banner-innovating.jpg",
+      caption: "Scalable Cloud Hosting, Server Patching & Disaster Recovery Protocols",
+    },
+  ],
 };
 
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -182,6 +330,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
 
   const IconComponent = ICON_MAP[service.iconName] || Code2;
   const serviceScreenshot = SERVICE_SCREENSHOTS[service.slug];
+  const serviceGallery = SERVICE_GALLERIES[service.slug];
   const serviceSchema = getServiceSchema({
     name: service.title,
     description: service.shortDescription,
@@ -207,7 +356,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className={serviceScreenshot ? "lg:col-span-7" : "max-w-3xl"}>
+            <div className={serviceScreenshot ? "lg:col-span-7" : "lg:col-span-12 max-w-3xl"}>
               <div className="inline-flex items-center gap-2 mb-4">
                 <Badge variant="teal">{service.badge}</Badge>
               </div>
@@ -243,18 +392,21 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
 
             {serviceScreenshot && (
               <div className="lg:col-span-5">
-                <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900">
-                  <div className="relative aspect-[16/10] w-full bg-slate-950">
+                <div className="rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-900 group">
+                  <div className="relative aspect-[16/10] w-full bg-slate-950 overflow-hidden">
                     <Image
                       src={serviceScreenshot.src}
                       alt={service.title}
                       fill
                       priority
-                      className="object-cover object-top"
+                      className={`object-cover ${serviceScreenshot.objectPosition || "object-center"} group-hover:scale-[1.02] transition-transform duration-300`}
                     />
                   </div>
-                  <div className="p-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-800">
-                    <span className="font-semibold">{serviceScreenshot.caption}</span>
+                  <div className="p-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-800 flex items-center justify-between">
+                    <span className="font-semibold line-clamp-1">{serviceScreenshot.caption}</span>
+                    <span className="text-[10px] bg-teal-950/80 text-teal-300 border border-teal-800/60 px-2 py-0.5 rounded font-mono uppercase tracking-wider ml-2 flex-shrink-0">
+                      Live Preview
+                    </span>
                   </div>
                 </div>
               </div>
@@ -341,25 +493,48 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
             {service.capabilities.map((cap) => (
               <div
                 key={cap.title}
-                className="bg-white rounded-xl p-6 border border-slate-200 shadow-subtle hover:border-brand-teal/70 hover:shadow-card transition-all"
+                className="bg-white rounded-xl p-6 border border-slate-200 shadow-subtle hover:border-brand-teal/70 hover:shadow-card transition-all flex flex-col justify-between h-full"
               >
-                <div className="w-8 h-8 rounded-lg bg-teal-50 text-brand-teal flex items-center justify-center mb-3">
-                  <CheckCircle2 className="w-4 h-4" />
+                <div>
+                  <div className="w-8 h-8 rounded-lg bg-teal-50 text-brand-teal flex items-center justify-center mb-3">
+                    <CheckCircle2 className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-bold text-brand-navy text-base">
+                    {cap.title}
+                  </h3>
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {cap.description}
+                  </p>
                 </div>
-                <h3 className="font-bold text-brand-navy text-base">
-                  {cap.title}
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {cap.description}
-                </p>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
+      {/* Live Interface & Implementation Showcase */}
+      {serviceGallery && serviceGallery.length > 0 && (
+        <section className="py-20 bg-white border-b border-slate-200/70">
+          <Container>
+            <div className="max-w-3xl mb-12">
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-teal">
+                Real Implementations
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-brand-navy mt-2">
+                Live Interfaces & Implementation Previews
+              </h2>
+              <p className="mt-3 text-slate-600 text-sm sm:text-base">
+                Click any implementation preview below to inspect actual interfaces, dashboards, and operational architectures configured by IraSoft.
+              </p>
+            </div>
+
+            <ImageLightbox images={serviceGallery} />
+          </Container>
+        </section>
+      )}
+
       {/* Engagement Workflow Process */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-brand-surface/40">
         <Container>
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-teal">
@@ -377,9 +552,9 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
             {service.workflowProcess.map((step) => (
               <div
                 key={step.step}
-                className="bg-brand-surface rounded-xl p-6 border border-slate-200"
+                className="bg-white rounded-xl p-6 border border-slate-200 shadow-subtle flex flex-col justify-start h-full"
               >
-                <span className="text-xs font-mono font-bold text-brand-teal bg-teal-50 px-2.5 py-1 rounded">
+                <span className="text-xs font-mono font-bold text-brand-teal bg-teal-50 px-2.5 py-1 rounded w-fit">
                   Phase {step.step}
                 </span>
                 <h3 className="mt-3 font-bold text-brand-navy text-base">
