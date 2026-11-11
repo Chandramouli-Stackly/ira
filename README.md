@@ -17,7 +17,7 @@ A complete, responsive, conversion-focused corporate website for **IraSoft Techn
   * Project Enquiries: `enquiry@irasofttech.in`
   * Executive Office: `ceo@irasofttech.in`
   * Alternate: `irasofttechnologies@gmail.com`
-* **Official Contact & WhatsApp Number:** `+91 82470 303031`
+* **Official Contact & WhatsApp Number:** `+91 82470 30301`
 * **Brand Palette:**
   * Primary Navy: `#142B4A`
   * Dark Navy: `#0B192C`

@@ -17,7 +17,7 @@ export function FaqAccordion() {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white/45">
       <Container size="narrow">
         <SectionHeading
           badge="Answers & Guidance"

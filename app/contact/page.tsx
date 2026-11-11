@@ -28,7 +28,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
       <Breadcrumbs items={[{ label: "Contact Us" }]} />
 
       {/* Hero Header */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
+      <section className="py-16 sm:py-20 bg-transparent border-b border-slate-200/60">
         <Container className="text-center">
           <Badge variant="teal">Direct Consultation</Badge>
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy max-w-3xl mx-auto">
@@ -43,7 +43,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
       </section>
 
       {/* Main Section */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white/40">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Official Contact Details */}
@@ -60,7 +60,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
               {/* Official Contact Cards */}
               <div className="space-y-4">
                 {/* Official Phone / WhatsApp */}
-                <div className="bg-brand-surface rounded-2xl p-6 border border-slate-200">
+                <div className="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-subtle">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-10 h-10 rounded-lg bg-teal-50 text-brand-teal flex items-center justify-center">
                       <Phone className="w-5 h-5" />
@@ -95,7 +95,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 </div>
 
                 {/* Official Emails */}
-                <div className="bg-brand-surface rounded-2xl p-6 border border-slate-200 space-y-4">
+                <div className="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-subtle space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-blue-50 text-brand-navy flex items-center justify-center">
                       <Mail className="w-5 h-5" />
@@ -144,7 +144,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 </div>
 
                 {/* Official Website */}
-                <div className="bg-brand-surface rounded-2xl p-6 border border-slate-200">
+                <div className="bg-white/95 rounded-2xl p-6 border border-slate-200/90 shadow-subtle">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center">
                       <Globe className="w-5 h-5" />
@@ -177,7 +177,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
             </div>
 
             {/* Right Column: Project Enquiry Form */}
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 bg-white/95 rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-card">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-brand-navy">
                   Send Project Enquiry

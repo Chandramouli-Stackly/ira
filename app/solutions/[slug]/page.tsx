@@ -144,9 +144,9 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
       />
 
       {/* Hero */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <section className="relative overflow-hidden py-16 sm:py-24 bg-transparent border-b border-slate-200/60">
+        <Container className="relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className={screenshot ? (screenshot.textColSpan || "lg:col-span-6") : "lg:col-span-12 max-w-3xl"}>
               <Badge variant="teal">{solution.badge}</Badge>
 
@@ -176,18 +176,22 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
 
             {screenshot && (
               <div className={screenshot.imageColSpan || "lg:col-span-6"}>
-                <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900">
-                  <div className={`relative ${screenshot.aspectClass || "aspect-[16/10]"} w-full bg-slate-950`}>
+                <div className="rounded-2xl overflow-hidden border border-slate-200/90 ring-1 ring-slate-900/5 shadow-2xl bg-white">
+                  <div className={`relative ${screenshot.aspectClass || "aspect-[16/10]"} w-full bg-slate-50`}>
                     <Image
                       src={screenshot.src}
                       alt={solution.title}
                       fill
                       priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       className={`${screenshot.fitClass || "object-cover"} ${screenshot.objectPosition || "object-top"}`}
                     />
                   </div>
-                  <div className="p-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-800 flex items-center justify-between">
-                    <span className="font-semibold">{screenshot.caption}</span>
+                  <div className="px-4 py-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-200/20 flex items-center justify-between gap-2">
+                    <span className="font-semibold line-clamp-1">{screenshot.caption}</span>
+                    <span className="text-[10px] bg-teal-950/80 text-teal-300 border border-teal-700/60 px-2 py-0.5 rounded font-mono uppercase tracking-wider flex-shrink-0">
+                      Live Suite
+                    </span>
                   </div>
                 </div>
               </div>
@@ -197,7 +201,7 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
       </section>
 
       {/* Solution Overview */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/45 border-b border-slate-200/60">
         <Container>
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-teal">
@@ -215,7 +219,7 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
             {solution.keyFeatures.map((feat) => (
               <div
                 key={feat.title}
-                className="bg-brand-surface rounded-xl p-6 border border-slate-200"
+                className="bg-white/95 rounded-xl p-6 border border-slate-200/90 shadow-subtle"
               >
                 <div className="flex items-center gap-2 mb-2 font-bold text-base text-brand-navy">
                   <CheckCircle2 className="w-5 h-5 text-brand-teal flex-shrink-0" />
@@ -231,7 +235,7 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
       </section>
 
       {/* User Roles Supported */}
-      <section id="roles" className="py-20 bg-brand-surface border-y border-slate-200/70">
+      <section id="roles" className="py-20 bg-transparent border-b border-slate-200/60">
         <Container>
           <div className="max-w-3xl mb-12">
             <Badge variant="teal">Operational Roles</Badge>
@@ -265,7 +269,7 @@ export default function SolutionDetailPage({ params }: SolutionPageProps) {
       </section>
 
       {/* Configurable Modules */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/45">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-5">

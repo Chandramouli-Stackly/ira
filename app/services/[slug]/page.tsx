@@ -24,6 +24,7 @@ import {
   HelpCircle,
   Clock,
   Sparkles,
+  Building2,
 } from "lucide-react";
 import { COMPANY } from "@/data/company";
 
@@ -177,29 +178,25 @@ const SERVICE_GALLERIES: Record<string, GalleryImage[]> = {
     {
       src: "/images/services/cs1.jpg",
       caption: "Bespoke Business Application Architecture & Tailored Portal Systems",
-      aspectClass: "aspect-video",
-      fitClass: "object-contain",
+      aspectClass: "aspect-[16/10]",
       objectPosition: "object-center",
     },
     {
       src: "/images/services/cs2.jpg",
       caption: "Custom Web Application: Law Enforcement Regulatory Registry & Verification",
-      aspectClass: "aspect-video",
-      fitClass: "object-contain",
+      aspectClass: "aspect-[16/10]",
       objectPosition: "object-center",
     },
     {
       src: "/images/services/cs3.jpg",
       caption: "Custom Rule Engine: Dynamic Multi-Parameter Calculations & Invoicing Logic",
-      aspectClass: "aspect-video",
-      fitClass: "object-contain",
+      aspectClass: "aspect-[16/10]",
       objectPosition: "object-center",
     },
     {
       src: "/images/services/cs4.jpg",
       caption: "Workflow Automation: Automated Status Transitions & Batch Processing",
-      aspectClass: "aspect-video",
-      fitClass: "object-contain",
+      aspectClass: "aspect-[16/10]",
       objectPosition: "object-center",
     },
   ],
@@ -207,19 +204,25 @@ const SERVICE_GALLERIES: Record<string, GalleryImage[]> = {
     {
       src: "/images/services/IA.jpg",
       caption: "Intelligent AI Process Automation, Cognitive Agents & Knowledge Retrieval",
-      aspectClass: "aspect-[19/10]",
+      aspectClass: "aspect-[16/10]",
       objectPosition: "object-center",
     },
     {
       src: "/images/services/IA2.jpg",
       caption: "Enterprise AI Integration: Natural Language Interfaces for Business Teams",
-      aspectClass: "aspect-[19/10]",
+      aspectClass: "aspect-[16/10]",
       objectPosition: "object-center",
     },
     {
       src: "/images/services/IA3.jpg",
       caption: "AI Neural Processing, Smart Document Pipelines & Cloud Architecture",
-      aspectClass: "aspect-[19/10]",
+      aspectClass: "aspect-[16/10]",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/images/services/nlp.png",
+      caption: "Natural Language Processing & Document Intelligence Pipelines",
+      aspectClass: "aspect-[16/10]",
       objectPosition: "object-center",
     },
   ],
@@ -462,9 +465,9 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       />
 
       {/* Hero Header */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <section className="relative overflow-hidden py-16 sm:py-24 bg-transparent border-b border-slate-200/60">
+        <Container className="relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className={serviceScreenshot ? (serviceScreenshot.textColSpan || "lg:col-span-6") : "lg:col-span-12 max-w-3xl"}>
               <div className="inline-flex items-center gap-2 mb-4">
                 <Badge variant="teal">{service.badge}</Badge>
@@ -501,19 +504,20 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
 
             {serviceScreenshot && (
               <div className={serviceScreenshot.imageColSpan || "lg:col-span-6"}>
-                <div className="rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-900 group">
-                  <div className={`relative ${serviceScreenshot.aspectClass || "aspect-[16/10]"} w-full bg-slate-950 overflow-hidden`}>
+                <div className="rounded-2xl overflow-hidden border border-slate-200/90 ring-1 ring-slate-900/5 shadow-2xl bg-white group">
+                  <div className={`relative ${serviceScreenshot.aspectClass || "aspect-[16/10]"} w-full bg-slate-50 overflow-hidden`}>
                     <Image
                       src={serviceScreenshot.src}
                       alt={service.title}
                       fill
                       priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       className={`${serviceScreenshot.fitClass || "object-cover"} ${serviceScreenshot.objectPosition || "object-center"} group-hover:scale-[1.02] transition-transform duration-300`}
                     />
                   </div>
-                  <div className="p-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-800 flex items-center justify-between">
+                  <div className="px-4 py-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-200/20 flex items-center justify-between gap-2">
                     <span className="font-semibold line-clamp-1">{serviceScreenshot.caption}</span>
-                    <span className="text-[10px] bg-teal-950/80 text-teal-300 border border-teal-800/60 px-2 py-0.5 rounded font-mono uppercase tracking-wider ml-2 flex-shrink-0">
+                    <span className="text-[10px] bg-teal-950/80 text-teal-300 border border-teal-700/60 px-2 py-0.5 rounded font-mono uppercase tracking-wider flex-shrink-0">
                       Live Preview
                     </span>
                   </div>
@@ -525,7 +529,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       </section>
 
       {/* Overview & Problems Solved */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/45 border-b border-slate-200/60">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left: What is this & Overview */}
@@ -534,7 +538,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                 Service Overview
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-brand-navy">
-                What We Build & Why It Matters
+                What We Build &amp; Why It Matters
               </h2>
               <p className="text-base text-slate-600 leading-relaxed">
                 {service.overview}
@@ -543,13 +547,13 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
               {/* Key Benefits */}
               <div className="pt-4">
                 <h3 className="text-sm font-bold text-brand-navy mb-3">
-                  Key Strategic Benefits:
+                  Key Strategic Benefits
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {service.keyBenefits.map((benefit) => (
                     <div
                       key={benefit}
-                      className="flex items-start gap-2.5 bg-brand-surface p-3.5 rounded-lg border border-slate-200/60"
+                      className="flex items-start gap-2.5 bg-white/95 p-3.5 rounded-xl border border-slate-200/80 shadow-subtle"
                     >
                       <Sparkles className="w-4 h-4 text-brand-teal flex-shrink-0 mt-0.5" />
                       <span className="text-xs sm:text-sm font-medium text-slate-800">
@@ -559,15 +563,40 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
                   ))}
                 </div>
               </div>
+
+              {/* Target Audiences */}
+              {service.targetAudiences.length > 0 && (
+                <div className="pt-4">
+                  <h3 className="text-sm font-bold text-brand-navy mb-3 flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-brand-teal" />
+                    <span>Ideal For These Organizations</span>
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {service.targetAudiences.map((audience) => (
+                      <div
+                        key={audience}
+                        className="flex items-start gap-2.5 bg-white/95 p-3.5 rounded-xl border border-slate-200/80 shadow-subtle"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-brand-navy flex-shrink-0 mt-0.5" />
+                        <span className="text-xs text-slate-600 leading-relaxed">
+                          {audience}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Right: Business Problems Solved */}
-            <div className="lg:col-span-5 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200">
-              <div className="flex items-center gap-2 mb-4 text-brand-navy font-bold text-lg">
-                <AlertTriangle className="w-5 h-5 text-amber-500" />
+            <div className="lg:col-span-5 bg-white/95 rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-subtle">
+              <div className="flex items-center gap-2.5 mb-5 text-brand-navy font-bold text-lg pb-4 border-b border-slate-200/80">
+                <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200/70 flex items-center justify-center">
+                  <AlertTriangle className="w-4 h-4 text-amber-600" />
+                </div>
                 <span>Business Challenges Solved</span>
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-3.5">
                 {service.businessProblemsSolved.map((problem) => (
                   <li
                     key={problem}
@@ -584,7 +613,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       </section>
 
       {/* Capabilities Section */}
-      <section id="capabilities" className="py-20 bg-brand-surface border-y border-slate-200/70">
+      <section id="capabilities" className="py-20 bg-transparent border-b border-slate-200/60">
         <Container>
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-teal">
@@ -623,7 +652,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
 
       {/* Live Interface & Implementation Showcase */}
       {serviceGallery && serviceGallery.length > 0 && (
-        <section className="py-20 bg-white border-b border-slate-200/70">
+        <section className="py-20 bg-white/45 border-b border-slate-200/60">
           <Container>
             <div className="max-w-3xl mb-12">
               <span className="text-xs font-bold uppercase tracking-wider text-brand-teal">
@@ -643,7 +672,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       )}
 
       {/* Engagement Workflow Process */}
-      <section className="py-20 bg-brand-surface/40">
+      <section className="py-20 bg-transparent border-b border-slate-200/60">
         <Container>
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-teal">
@@ -680,7 +709,7 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
 
       {/* Service-Specific FAQs */}
       {service.faqs.length > 0 && (
-        <section className="py-20 bg-brand-surface border-t border-slate-200/70">
+        <section className="py-20 bg-white/45">
           <Container size="narrow">
             <div className="text-center mb-10">
               <span className="text-xs font-bold uppercase tracking-wider text-brand-teal">
@@ -712,10 +741,11 @@ export default function ServiceDetailPage({ params }: ServicePageProps) {
       )}
 
       {/* Conversion Banner */}
-      <section className="py-16 bg-brand-navy text-white">
-        <Container className="text-center">
+      <section className="py-16 bg-brand-navy text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot-pattern-dark pointer-events-none" />
+        <Container className="relative z-10 text-center">
           <div className="max-w-2xl mx-auto space-y-5">
-            <h2 className="text-2xl sm:text-3xl font-bold">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">
               Ready to Discuss Your {service.shortTitle} Project?
             </h2>
             <p className="text-slate-300 text-sm">

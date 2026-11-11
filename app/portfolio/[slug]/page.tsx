@@ -64,7 +64,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
       />
 
       {/* Hero Header */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
+      <section className="py-16 sm:py-20 bg-transparent border-b border-slate-200/60">
         <Container>
           <div className="max-w-4xl">
             <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -94,19 +94,20 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
       </section>
 
       {/* Main Content & Real Screenshots Showcase */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/45">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Real Screenshots & Case Study Breakdown */}
             <div className="lg:col-span-8 space-y-12">
               {/* Primary Feature Showcase */}
-              <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900">
-                <div className="relative aspect-[16/10] w-full bg-slate-950">
+              <div className="rounded-2xl overflow-hidden border border-slate-200/90 ring-1 ring-slate-900/5 shadow-xl bg-white">
+                <div className="relative aspect-[16/10] w-full bg-slate-50">
                   <Image
                     src={project.featuredImage}
                     alt={project.title}
                     fill
                     priority
+                    sizes="(max-width: 1024px) 100vw, 66vw"
                     className="object-cover object-top"
                   />
                 </div>
@@ -170,7 +171,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
                   {project.keyCapabilities.map((cap) => (
                     <div
                       key={cap}
-                      className="bg-brand-surface p-4 rounded-xl border border-slate-200/80 flex items-start gap-2.5 text-xs sm:text-sm text-slate-800"
+                      className="bg-white/95 p-4 rounded-xl border border-slate-200/80 shadow-subtle flex items-start gap-2.5 text-xs sm:text-sm text-slate-800"
                     >
                       <Sparkles className="w-4 h-4 text-brand-teal flex-shrink-0 mt-0.5" />
                       <span>{cap}</span>
@@ -182,7 +183,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
 
             {/* Right Column: Project Meta Sidebar */}
             <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
-              <div className="bg-brand-surface rounded-2xl p-6 border border-slate-200 shadow-subtle space-y-5">
+              <div className="bg-white/95 rounded-2xl p-6 border border-slate-200 shadow-subtle space-y-5">
                 <h3 className="font-bold text-brand-navy text-sm border-b border-slate-200 pb-3 flex items-center justify-between">
                   <span>Project Overview</span>
                   {!project.isPlaceholder && (
@@ -280,7 +281,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
 
       {/* Related Solutions */}
       {relatedProjects.length > 0 && (
-        <section className="py-16 bg-brand-surface border-t border-slate-200/70">
+        <section className="py-16 bg-transparent border-t border-slate-200/70">
           <Container>
             <h2 className="text-xl font-bold text-brand-navy mb-6">
               More Enterprise Project Deliverables

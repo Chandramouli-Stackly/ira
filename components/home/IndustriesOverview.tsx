@@ -27,7 +27,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
 
 export function IndustriesOverview() {
   return (
-    <section className="py-20 bg-brand-surface border-b border-slate-200/70">
+    <section className="py-20 bg-transparent border-b border-slate-200/60">
       <Container>
         <SectionHeading
           badge="Who We Support"

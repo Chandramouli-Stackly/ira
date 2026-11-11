@@ -53,7 +53,7 @@ export function FeaturedSolution() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white/40 border-b border-slate-200/60">
       <Container>
         <div className="bg-gradient-to-br from-slate-900 via-brand-navy to-brand-navy-dark rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden">
           {/* Subtle Background Glow */}
@@ -82,6 +82,7 @@ export function FeaturedSolution() {
                     src="/images/projects/hotel-calendar-matrix.jpg"
                     alt="Mouli Hotels & Resorts Management Suite by IraSoft Technologies"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover object-top"
                   />
                 </div>

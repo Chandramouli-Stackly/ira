@@ -73,6 +73,7 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
                 src={item.src}
                 alt={item.caption}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className={`${item.fitClass || "object-cover"} ${item.objectPosition || "object-top"} group-hover:scale-[1.03] transition-transform duration-300`}
               />
               <div className="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -138,6 +139,7 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
                 src={images[selectedIndex].src}
                 alt={images[selectedIndex].caption}
                 fill
+                sizes="90vw"
                 className="object-contain"
                 priority
               />

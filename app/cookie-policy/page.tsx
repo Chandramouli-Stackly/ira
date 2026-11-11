@@ -17,8 +17,9 @@ export default function CookiePolicyPage() {
     <>
       <Breadcrumbs items={[{ label: "Cookie Policy" }]} />
 
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-transparent">
         <Container size="narrow">
+          <div className="bg-white/95 rounded-2xl border border-slate-200/90 p-6 sm:p-10 shadow-card">
           <Badge variant="neutral">Cookies & Storage</Badge>
           <h1 className="mt-3 text-3xl sm:text-4xl font-bold text-brand-navy">
             Cookie Policy
@@ -73,6 +74,7 @@ export default function CookiePolicyPage() {
                 </a>.
               </p>
             </section>
+          </div>
           </div>
         </Container>
       </section>

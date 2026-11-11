@@ -9,12 +9,8 @@ import { COMPANY } from "@/data/company";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50/80 via-white to-white pt-10 sm:pt-16 pb-16 lg:pb-24 border-b border-slate-100">
-      {/* Background Subtle Gradient Blobs */}
-      <div className="absolute top-0 right-1/4 -z-10 w-96 h-96 bg-teal-100/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-20 left-10 -z-10 w-80 h-80 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
-
-      <Container>
+    <section className="relative overflow-hidden bg-transparent pt-10 sm:pt-16 pb-16 lg:pb-24 border-b border-slate-200/60">
+      <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Headlines & Actions */}
           <div className="lg:col-span-6 space-y-6 text-left">
@@ -81,6 +77,7 @@ export function Hero() {
                     alt="Innovating Today, Transforming Tomorrow - IraSoft Technologies"
                     fill
                     priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </div>

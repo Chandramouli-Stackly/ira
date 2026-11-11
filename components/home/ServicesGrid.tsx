@@ -28,7 +28,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
 
 export function ServicesGrid() {
   return (
-    <section id="services" className="py-20 bg-brand-surface border-y border-slate-200/70">
+    <section id="services" className="py-20 bg-transparent border-b border-slate-200/60">
       <Container>
         <SectionHeading
           badge="What We Do"
@@ -94,6 +94,40 @@ export function ServicesGrid() {
               </Card>
             );
           })}
+
+          {/* Closing Consultation Callout filling remaining grid space */}
+          <div className="md:col-span-1 lg:col-span-2 rounded-xl bg-gradient-to-br from-brand-navy via-brand-navy to-brand-navy-light p-8 text-white shadow-card flex flex-col justify-between relative overflow-hidden">
+            <div className="absolute inset-0 bg-dot-pattern-dark pointer-events-none" />
+            <div className="relative z-10 max-w-xl space-y-3">
+              <span className="inline-flex items-center text-[11px] font-bold uppercase tracking-widest text-teal-300 bg-teal-500/15 border border-teal-400/30 px-2.5 py-1 rounded-full">
+                Tailored Engagement
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white leading-snug">
+                Not Sure Which Technology Fits Your Operations Best?
+              </h3>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Whether you need Odoo ERP workflows, a property management suite,
+                custom business portals, or AI process automation, our engineering
+                team evaluates your workflow and recommends the most practical path.
+              </p>
+            </div>
+
+            <div className="relative z-10 mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-brand-teal hover:bg-brand-teal-dark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors shadow-sm group"
+              >
+                <span>Schedule a Technical Consultation</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/services"
+                className="text-xs font-semibold text-teal-300 hover:text-white transition-colors"
+              >
+                Compare All 7 Services →
+              </Link>
+            </div>
+          </div>
         </div>
       </Container>
     </section>

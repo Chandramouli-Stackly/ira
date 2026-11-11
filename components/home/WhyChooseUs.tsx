@@ -57,7 +57,7 @@ export function WhyChooseUs() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white/45 border-b border-slate-200/60">
       <Container>
         <SectionHeading
           badge="Why IraSoft"
@@ -66,22 +66,29 @@ export function WhyChooseUs() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reasons.map((item) => {
+          {reasons.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.title}
-                className="bg-brand-surface rounded-xl p-6 border border-slate-200/80 hover:border-brand-teal/60 hover:shadow-subtle transition-all duration-200"
+                className="bg-white/95 rounded-xl p-6 border border-slate-200/80 hover:border-brand-teal/60 hover:bg-white hover:shadow-card transition-all duration-200 group flex flex-col justify-between shadow-subtle"
               >
-                <div className="w-10 h-10 rounded-lg bg-teal-50 text-brand-teal flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5" />
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-teal-50 border border-teal-100 text-brand-teal group-hover:bg-brand-teal group-hover:text-white transition-colors flex items-center justify-center">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-xs font-mono font-bold text-slate-300 group-hover:text-brand-teal/60 transition-colors">
+                      0{idx + 1}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-brand-navy text-base">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="font-bold text-brand-navy text-base">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {item.description}
-                </p>
               </div>
             );
           })}

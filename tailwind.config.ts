@@ -25,8 +25,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        heading: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        sans: ['"Times New Roman"', "Times", "serif"],
+        heading: ['"Times New Roman"', "Times", "serif"],
+        serif: ['"Times New Roman"', "Times", "serif"],
+        mono: ['"Times New Roman"', "Times", "serif"],
       },
       boxShadow: {
         subtle: "0 2px 10px rgba(20, 43, 74, 0.04), 0 1px 3px rgba(20, 43, 74, 0.06)",

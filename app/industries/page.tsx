@@ -44,7 +44,7 @@ export default function IndustriesPage() {
       <Breadcrumbs items={[{ label: "Industries" }]} />
 
       {/* Header */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
+      <section className="py-16 sm:py-20 bg-transparent border-b border-slate-200/60">
         <Container className="text-center">
           <Badge variant="teal">Sector-Specific Expertise</Badge>
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy max-w-3xl mx-auto">
@@ -58,7 +58,7 @@ export default function IndustriesPage() {
       </section>
 
       {/* Industries Detailed Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/40">
         <Container>
           <div className="space-y-16">
             {INDUSTRIES.map((ind, index) => {
@@ -68,7 +68,7 @@ export default function IndustriesPage() {
                 <div
                   key={ind.id}
                   id={ind.slug}
-                  className="bg-brand-surface rounded-2xl border border-slate-200 p-8 sm:p-12 shadow-subtle scroll-mt-24"
+                  className="bg-white/95 rounded-2xl border border-slate-200/90 p-8 sm:p-12 shadow-subtle scroll-mt-24"
                 >
                   <div className="flex flex-col lg:flex-row items-start justify-between gap-6 pb-6 border-b border-slate-200">
                     <div className="flex items-center gap-4">

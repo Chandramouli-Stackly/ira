@@ -58,8 +58,8 @@ export default function AboutPage() {
       <Breadcrumbs items={[{ label: "About Us" }]} />
 
       {/* Hero Section */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
-        <Container>
+      <section className="relative overflow-hidden py-16 sm:py-24 bg-transparent border-b border-slate-200/60">
+        <Container className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
               <Badge variant="teal">About IraSoft Technologies</Badge>
@@ -93,14 +93,24 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200/90 ring-1 ring-slate-900/5 bg-white">
                 <div className="relative aspect-video w-full">
                   <Image
                     src="/images/brand/about1.png"
                     alt="Dream. Innovate. Grow. - IraSoft Technologies"
                     fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                   />
+                </div>
+                <div className="px-4 py-3 bg-brand-navy text-[11px] text-teal-300 border-t border-slate-200/20 flex items-center justify-between gap-2">
+                  <span className="font-semibold">
+                    Engineering Technology for Business Growth
+                  </span>
+                  <span className="text-[10px] bg-teal-950/80 text-teal-300 border border-teal-700/60 px-2 py-0.5 rounded font-mono uppercase tracking-wider flex-shrink-0">
+                    IraSoft Vision
+                  </span>
                 </div>
               </div>
             </div>
@@ -109,11 +119,11 @@ export default function AboutPage() {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/45 border-b border-slate-200/60">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Vision Card */}
-            <div className="bg-brand-surface rounded-2xl p-8 sm:p-10 border border-slate-200 relative overflow-hidden">
+            <div className="bg-white/95 rounded-2xl p-8 sm:p-10 border border-slate-200/90 shadow-subtle relative overflow-hidden">
               <div className="w-12 h-12 rounded-xl bg-teal-50 text-brand-teal flex items-center justify-center mb-6">
                 <Compass className="w-6 h-6" />
               </div>
@@ -134,7 +144,7 @@ export default function AboutPage() {
             </div>
 
             {/* Mission Card */}
-            <div className="bg-brand-surface rounded-2xl p-8 sm:p-10 border border-slate-200 relative overflow-hidden">
+            <div className="bg-white/95 rounded-2xl p-8 sm:p-10 border border-slate-200/90 shadow-subtle relative overflow-hidden">
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-brand-navy flex items-center justify-center mb-6">
                 <Target className="w-6 h-6" />
               </div>
@@ -158,7 +168,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Approach */}
-      <section className="py-20 bg-brand-surface border-y border-slate-200/70">
+      <section className="py-20 bg-transparent border-b border-slate-200/60">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
             <Badge variant="teal">Our Approach</Badge>
@@ -216,7 +226,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Capabilities */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/45">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
             <Badge variant="teal">Capabilities</Badge>
@@ -248,14 +258,15 @@ export default function AboutPage() {
           </div>
 
           {/* CTA Box */}
-          <div className="mt-16 bg-gradient-to-r from-brand-navy to-brand-navy-light rounded-2xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="text-2xl font-bold">Have a Project in Mind?</h3>
+          <div className="mt-16 bg-gradient-to-r from-brand-navy to-brand-navy-light rounded-2xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-card">
+            <div className="absolute inset-0 bg-dot-pattern-dark pointer-events-none" />
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-white">Have a Project in Mind?</h3>
               <p className="text-slate-300 text-sm mt-1">
                 Let&apos;s discuss how IraSoft Technologies can engineer the right solution for your business.
               </p>
             </div>
-            <Button href="/contact" variant="teal" size="lg" className="whitespace-nowrap">
+            <Button href="/contact" variant="teal" size="lg" className="relative z-10 whitespace-nowrap">
               <span>Discuss Your Project</span>
               <ArrowRight className="w-4 h-4" />
             </Button>

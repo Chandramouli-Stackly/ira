@@ -3,6 +3,8 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { AmbientBackground } from "@/components/layout/AmbientBackground";
+import { CursorFollower } from "@/components/layout/CursorFollower";
 import { COMPANY } from "@/data/company";
 import { constructMetadata } from "@/lib/seo/metadata";
 import { getOrganizationSchema, getWebsiteSchema } from "@/lib/seo/schema";
@@ -65,7 +67,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col font-sans bg-white text-brand-text antialiased">
+      <body className="min-h-screen flex flex-col font-sans bg-transparent text-brand-text antialiased relative">
+        <AmbientBackground />
+        <CursorFollower />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

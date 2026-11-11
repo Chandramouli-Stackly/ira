@@ -17,7 +17,7 @@ export default function InsightsPage() {
     <>
       <Breadcrumbs items={[{ label: "Insights" }]} />
 
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
+      <section className="py-16 sm:py-20 bg-transparent border-b border-slate-200/60">
         <Container className="text-center">
           <Badge variant="teal">Knowledge & Practical Advice</Badge>
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy max-w-3xl mx-auto">
@@ -29,7 +29,7 @@ export default function InsightsPage() {
         </Container>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/40">
         <Container>
           <InsightsList />
         </Container>

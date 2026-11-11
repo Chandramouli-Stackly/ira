@@ -17,8 +17,9 @@ export default function PrivacyPolicyPage() {
     <>
       <Breadcrumbs items={[{ label: "Privacy Policy" }]} />
 
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-transparent">
         <Container size="narrow">
+          <div className="bg-white/95 rounded-2xl border border-slate-200/90 p-6 sm:p-10 shadow-card">
           <Badge variant="neutral">Legal & Privacy</Badge>
           <h1 className="mt-3 text-3xl sm:text-4xl font-bold text-brand-navy">
             Privacy Policy
@@ -100,6 +101,7 @@ export default function PrivacyPolicyPage() {
                 <p>Website: <a href={COMPANY.websiteUrl} className="text-brand-teal font-semibold">{COMPANY.websiteUrl}</a></p>
               </div>
             </section>
+          </div>
           </div>
         </Container>
       </section>

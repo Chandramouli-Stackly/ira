@@ -7,7 +7,8 @@ import { COMPANY } from "@/data/company";
 export function CtaBanner() {
   return (
     <section className="py-20 bg-brand-navy-dark text-white relative overflow-hidden">
-      {/* Background Accent Gradients */}
+      {/* Background Dot Grid & Accent Gradients */}
+      <div className="absolute inset-0 bg-dot-pattern-dark pointer-events-none" />
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -z-0 w-96 h-96 bg-brand-teal/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 -z-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 

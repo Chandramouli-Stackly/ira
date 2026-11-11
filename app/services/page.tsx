@@ -43,7 +43,7 @@ export default function ServicesPage() {
       <Breadcrumbs items={[{ label: "Services" }]} />
 
       {/* Header */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-brand-surface via-white to-white border-b border-slate-100">
+      <section className="py-16 sm:py-20 bg-transparent border-b border-slate-200/60">
         <Container className="text-center">
           <Badge variant="teal">Comprehensive Engineering</Badge>
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-navy max-w-3xl mx-auto">
@@ -57,7 +57,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Listing */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/40">
         <Container>
           <div className="space-y-16">
             {SERVICES.map((service, index) => {
@@ -68,7 +68,7 @@ export default function ServicesPage() {
                 <div
                   key={service.id}
                   id={service.slug}
-                  className="bg-brand-surface rounded-2xl border border-slate-200/90 p-8 sm:p-12 shadow-subtle hover:shadow-card transition-all"
+                  className="bg-white/95 rounded-2xl border border-slate-200/90 p-8 sm:p-12 shadow-subtle hover:shadow-card transition-all"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left: Service Details */}

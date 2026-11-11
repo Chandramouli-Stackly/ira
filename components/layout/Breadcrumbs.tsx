@@ -14,7 +14,7 @@ interface BreadcrumbsProps {
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <div className="bg-slate-50 border-b border-slate-200/60 py-3 text-xs sm:text-sm">
+    <div className="bg-white/55 backdrop-blur-md border-b border-slate-200/60 py-3 text-xs sm:text-sm">
       <Container>
         <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-slate-500 overflow-x-auto whitespace-nowrap py-0.5">
           <Link

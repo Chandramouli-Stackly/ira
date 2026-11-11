@@ -51,8 +51,9 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
         ]}
       />
 
-      <article className="py-16 sm:py-20 bg-white">
+      <article className="py-16 sm:py-20 bg-transparent">
         <Container size="narrow">
+          <div className="bg-white/95 rounded-2xl border border-slate-200/90 p-6 sm:p-10 shadow-card">
           {/* Header */}
           <div className="space-y-4 border-b border-slate-200 pb-8 mb-10">
             <div className="flex items-center gap-2">
@@ -170,12 +171,13 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
+          </div>
         </Container>
       </article>
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section className="py-16 bg-brand-surface border-t border-slate-200">
+        <section className="py-16 bg-white/45 border-t border-slate-200/60">
           <Container size="narrow">
             <h2 className="text-xl font-bold text-brand-navy mb-6">
               More Insights & Guides

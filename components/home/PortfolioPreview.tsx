@@ -12,7 +12,7 @@ export function PortfolioPreview() {
   const featuredProjects = PROJECTS.slice(0, 3);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white/45 border-b border-slate-200/60">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <SectionHeading
@@ -42,6 +42,7 @@ export function PortfolioPreview() {
                     src={project.featuredImage}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
                   />
                   {!project.isPlaceholder && (

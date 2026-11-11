@@ -8,7 +8,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export function IntroSection() {
   return (
-    <section className="py-16 sm:py-20 bg-white">
+    <section className="py-16 sm:py-20 bg-white/45 border-b border-slate-200/60">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Visual Banner from uploaded social post */}
@@ -19,6 +19,7 @@ export function IntroSection() {
                   src="/images/brand/social-launch-laptop.jpg"
                   alt="IraSoft Technologies - Digital Transformation Partner"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                 />
               </div>
