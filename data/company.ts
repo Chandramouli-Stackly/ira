@@ -43,10 +43,10 @@ export const COMPANY: CompanyInfo = {
     gmail: "irasofttechnologies@gmail.com",
   },
   phone: {
-    display: "+91 82470 303031",
-    raw: "+9182470303031",
+    display: "+91 82470 30301",
+    raw: "+918247030301",
     countryCode: "+91",
-    whatsappUrl: "https://wa.me/9182470303031?text=Hello%20IraSoft%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project.",
+    whatsappUrl: "https://wa.me/918247030301?text=Hello%20IraSoft%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project.",
   },
   social: {
     linkedin: "https://www.linkedin.com/company/irasofttech",
