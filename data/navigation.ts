@@ -92,6 +92,7 @@ export const MAIN_NAVIGATION: NavItem[] = [
   { name: "Industries", href: "/industries" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Insights", href: "/insights" },
+  { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact" }
 ];
 
@@ -116,6 +117,7 @@ export const FOOTER_LINKS = {
     { name: "Industries We Serve", href: "/industries" },
     { name: "Project Portfolio", href: "/portfolio" },
     { name: "Technology Insights", href: "/insights" },
+    { name: "Careers", href: "/careers" },
     { name: "Contact Our Team", href: "/contact" }
   ],
   legal: [

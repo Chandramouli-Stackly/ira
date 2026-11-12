@@ -118,7 +118,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5">
             {MAIN_NAVIGATION.map((item) => {
               const hasChildren = Boolean(item.children && item.children.length > 0);
               const isActive =
@@ -141,7 +141,7 @@ export function Header() {
                         setActiveDropdown(isOpen ? null : item.name)
                       }
                       className={cn(
-                        "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                        "flex items-center gap-1 px-2 xl:px-3 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap",
                         isActive || isOpen
                           ? "text-brand-teal font-semibold"
                           : "text-slate-700 hover:text-brand-navy hover:bg-slate-50"
@@ -248,7 +248,7 @@ export function Header() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                    "px-2 xl:px-3 py-2 text-sm font-medium rounded-md transition-colors whitespace-nowrap",
                     isActive
                       ? "text-brand-teal font-semibold"
                       : "text-slate-700 hover:text-brand-navy hover:bg-slate-50"

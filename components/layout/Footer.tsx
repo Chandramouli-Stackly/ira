@@ -136,7 +136,15 @@ export function Footer() {
                   href="/insights"
                   className="text-slate-400 hover:text-teal-400 transition-colors"
                 >
-                  Insights & Articles
+                  Insights &amp; Articles
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/careers"
+                  className="text-slate-400 hover:text-teal-400 transition-colors"
+                >
+                  Careers &amp; Openings
                 </Link>
               </li>
             </ul>
