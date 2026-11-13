@@ -49,8 +49,8 @@ export const COMPANY: CompanyInfo = {
     whatsappUrl: "https://wa.me/918247030301?text=Hello%20IraSoft%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project.",
   },
   social: {
-    linkedin: "https://www.linkedin.com/company/irasofttech",
-    instagram: "https://www.instagram.com/irasofttech",
+    linkedin: "https://www.linkedin.com/company/irasoft-tech/",
+    instagram: "https://www.instagram.com/irasofttechnologies/",
   },
   brandColors: {
     navy: "#142B4A",
